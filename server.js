@@ -1,4 +1,5 @@
 var express = require("express");
+var mongoose = require("mongoose");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 
@@ -27,6 +28,21 @@ app.use(bodyParser.urlencoded({
 
 //Set every request going through middleware
 app.use(router);
+
+//Defining a deployed and local database
+var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+//Connecting mongoose to our database
+mongoose.connect(db, function(error){
+    //If happens, log the error
+    if(error){
+        console.log(error);
+    }
+    //Or confirm connection
+    else {
+        console.log("Mongoose connection was successful")
+    }
+});
 
 //Listen on designated PORT
 app.listen(PORT, function(){

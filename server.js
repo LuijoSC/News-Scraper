@@ -12,6 +12,9 @@ var app = express();
 //Setting up the Express Router
 var router = express.Router();
 
+//Requiring routes file to pass router object
+require("./config/routes")(router);
+
 //Setting public folder as a static directory
 app.use(express.static(__dirname + "/public"));
 

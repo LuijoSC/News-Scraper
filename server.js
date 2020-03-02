@@ -35,6 +35,9 @@ app.use(router);
 //Defining a deployed and local database
 var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+mongoose.connect(MONGODB_URI)
+
 //Connecting mongoose to our database
 mongoose.connect(db, function(error){
     //If happens, log the error
